@@ -12,13 +12,13 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './primedialog.component.scss'
 })
 export class PrimedialogComponent {
-    visible: boolean = false;
+  visible: boolean = false;
 
-    showDialog() {
-        this.visible = true;
-    }
+  showDialog() {
+    this.visible = true;
+  }
 
-    closeDialog() {
-        this.visible = false;
-    }
+  closeDialog() {
+    this.visible = false;
+  }
 }

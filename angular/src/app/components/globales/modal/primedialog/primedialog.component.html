@@ -1,29 +1,27 @@
-<p-button (click)="showDialog()" label="Show" [raised]="true" severity="info" />
-<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-    <ng-template #header>
-        <div class="inline-flex items-center justify-center gap-2">
-            <span class="font-bold whitespace-nowrap">Crear nuevo contacto</span>
-        </div>
-    </ng-template>
-    <hr>
-    <p class="mb-8">
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-    </p>
-    <p class="mb-8">
-        At vero eos et accusamus et iusto odio dignissimos...
-    </p>
-    <p class="mb-8">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-    </p>
-    <p class="mb-8">
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-    </p>
-    <p>
-        At vero eos et accusamus et iusto odio dignissimos...
-    </p>
-    <ng-template #footer>
-        <p-button label="Cancel" [text]="true" severity="secondary" (click)="visible = false" />
-        <p-button label="Save" [outlined]="true" severity="secondary" (click)="visible = false" />
-    </ng-template>
+<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+  <ng-template #header>
+    <div class="inline-flex items-center justify-center gap-2">
+      <span class="font-bold whitespace-nowrap">Crear nuevo contacto</span>
+    </div>
+  </ng-template>
+  <p class="mb-8">
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+  </p>
+  <p class="mb-8">
+    At vero eos et accusamus et iusto odio dignissimos...
+  </p>
+  <p class="mb-8">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+  </p>
+  <p class="mb-8">
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+  </p>
+  <p>
+    At vero eos et accusamus et iusto odio dignissimos...
+  </p>
+  <ng-template #footer>
+    <p-button label="Cancel" [text]="true" severity="secondary" (click)="visible = false" />
+    <p-button label="Save" [outlined]="true" severity="secondary" (click)="visible = false" />
+  </ng-template>
 </p-dialog>
-

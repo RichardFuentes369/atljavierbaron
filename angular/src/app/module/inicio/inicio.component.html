@@ -1,11 +1,12 @@
 <div class="">
   <div class="d-flex flex-row-reverse bd-highlight">
-    <div class="p-2 bd-highlight">
+    <div class="p-1 bd-highlight">
       <app-component-btnupload (alertaJson)="alertaJson()"></app-component-btnupload>
     </div>
     <div class="p-2 bd-highlight">
-      <app-global-primedialog></app-global-primedialog>
+      <p-button label="Crear" [raised]="true" severity="warn" [rounded]="true" severity="info" size="small" (click)="abrirModal()"/>
     </div>
   </div>  
-  <app-component-table></app-component-table>
+  <app-global-primedialog></app-global-primedialog>
+  <app-component-table (abrirModal)="abrirModal()"></app-component-table>
 </div>

@@ -29,7 +29,7 @@ export class TableComponent implements OnInit {
     private uploadService :UploadService,
   ){ }
 
-  @Output() alertaJson = new EventEmitter<void>();
+  @Output() abrirModal = new EventEmitter<void>();
   
   contactos!: Contactos[];
 
@@ -72,5 +72,9 @@ export class TableComponent implements OnInit {
       this.refreshTable()
       swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
     }
+  }
+
+  async editarContacto(){
+    this.abrirModal.emit()
   }
 }

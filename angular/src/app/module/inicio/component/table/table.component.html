@@ -18,7 +18,7 @@
         <td>{{ contactos.sexo }}</td>
         <td>{{ contactos.nacimiento }}</td>
         <td>
-          <p-button label="Actualizar" [raised]="true" severity="warn" [rounded]="true" severity="warn" size="small" />
+          <p-button label="Actualizar" [raised]="true" severity="warn" [rounded]="true" severity="warn" size="small" (click)="editarContacto()" />
           <p-button label="Eliminar" [raised]="true" severity="danger" [rounded]="true" severity="danger" size="small" (click)="eliminarContacto(rowIndex)" />
         </td>
       </tr>

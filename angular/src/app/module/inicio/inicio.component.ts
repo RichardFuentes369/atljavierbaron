@@ -26,8 +26,13 @@ export class InicioComponent {
   ) { }
 
   @ViewChild(TableComponent) tableComponent!: TableComponent;
+  @ViewChild(PrimedialogComponent) primedialogComponent!: PrimedialogComponent;
 
   alertaJson(){
     this.tableComponent.refreshTable()
+  }
+
+  abrirModal(){
+    this.primedialogComponent.showDialog()
   }
 }
