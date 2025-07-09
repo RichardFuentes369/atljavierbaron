@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
-  standalone: true, 
+  standalone: true,
   imports: [
     CommonModule, // Generalmente se necesita en standalone
     RouterOutlet // <--- ¡Este es el import clave para <router-outlet>!
@@ -19,8 +19,13 @@ export class AppComponent implements OnInit {
   title = 'template01';                                                                                                         
 
   constructor(
+    private translate: TranslateService,
+    private _cookies: CookieService,
     private router: Router
-  ){  
+  ){
+    this._cookies.delete('languague')
+    this._cookies.set('languague', 'es')
+    this.translate.use('es');
   }
 
   ngOnInit() {

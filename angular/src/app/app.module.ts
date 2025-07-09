@@ -4,6 +4,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 // Paquete para peticiones http
 import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
+import { ApplicationConfig } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
@@ -28,10 +29,34 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
+import { RouterModule } from '@angular/router';
+
 export function createTranslateLoader(http: HttpClient) {
   const baseTranslateUrl = './assets/i18n';
   const options: IModuleTranslationOptions = {
     modules: [
+      // inicio globales
+      { baseTranslateUrl, moduleName: 'components/globales/breadcrumb', namespace: 'global-breadcrumb' },
+      { baseTranslateUrl, moduleName: 'components/globales/idioma', namespace: 'global-idioma' },
+      { baseTranslateUrl, moduleName: 'components/globales/loading', namespace: 'global-loading' },
+      { baseTranslateUrl, moduleName: 'components/globales/login', namespace: 'global-login' },
+      { baseTranslateUrl, moduleName: 'components/globales/search', namespace: 'global-search' },
+      { baseTranslateUrl, moduleName: 'components/globales/modal', namespace: 'global-modal' },
+      { baseTranslateUrl, moduleName: 'components/globales/notfound', namespace: 'global-notfound' },
+      { baseTranslateUrl, moduleName: 'components/globales/tablecrud', namespace: 'global-tablecrud' },
+      // fin globales
+
+      // inicio layout
+      { baseTranslateUrl, moduleName: 'layout/admin', namespace: 'layout-admin' },
+      { baseTranslateUrl, moduleName: 'layout/index', namespace: 'layout-index' },
+      { baseTranslateUrl, moduleName: 'layout/user', namespace: 'layout-user' },
+      // fin layout
+
+      // inicio modulos
+      { baseTranslateUrl, moduleName: 'module/basico', namespace: 'pages-basico'},
+      { baseTranslateUrl, moduleName: 'module/usuarios', namespace: 'pages-usuarios'},
+      { baseTranslateUrl, moduleName: 'module/modulos', namespace: 'pages-modulos'},
+      // fin modulos
     ]
   };
   return new ModuleTranslateLoader(http, options);
@@ -67,6 +92,6 @@ export function createTranslateLoader(http: HttpClient) {
         }
     })
   ],
-  bootstrap: []
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

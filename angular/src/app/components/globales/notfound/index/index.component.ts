@@ -23,4 +23,7 @@ export class IndexnotFoundComponent {
     return data;
   }
 
+  idiomaCambiar(valor: string){
+    this.translate.use(valor)
+  }
 }
