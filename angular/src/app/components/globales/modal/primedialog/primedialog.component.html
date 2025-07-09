@@ -5,23 +5,11 @@
       <span class="font-bold whitespace-nowrap">{{title}}</span>
     </div>
   </ng-template>
-  <p class="mb-8">
-    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-  </p>
-  <p class="mb-8">
-    At vero eos et accusamus et iusto odio dignissimos...
-  </p>
-  <p class="mb-8">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-  </p>
-  <p class="mb-8">
-    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-  </p>
-  <p>
-    At vero eos et accusamus et iusto odio dignissimos...
-  </p>
+
+  <div #contenedor></div>
+
   <ng-template #footer>
-    <p-button label="Cancel" [text]="true" severity="secondary" (click)="visible = false" />
-    <p-button label="Save" [outlined]="true" severity="secondary" (click)="visible = false" />
+    <p-button label="Cerrar" [text]="true" severity="secondary" (click)="visible = false" />
+    <p-button label="Guardar" [outlined]="true" severity="secondary" (click)="visible = false" />
   </ng-template>
 </p-dialog>

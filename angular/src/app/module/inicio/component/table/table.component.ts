@@ -76,7 +76,8 @@ export class TableComponent implements OnInit {
 
   async editarContacto(){
     let infoModal = {
-      title: "Editar contacto"
+      title: "Editar contacto",
+      componentePrecargado: "FormcontactoComponent"
     }
     this.abrirModal.emit(infoModal)
   }
