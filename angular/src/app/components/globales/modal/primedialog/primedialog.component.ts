@@ -1,48 +1,75 @@
-import { Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
+import { Component, ComponentFactoryResolver, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ListaComponentes } from '@module/lista-componentes';
-
+import { FormcontactoComponent } from '@module/inicio/component/formcontacto/formcontacto.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-global-primedialog',
   standalone: true,
-  imports: [Dialog, ButtonModule, InputTextModule],
+  imports: [DialogModule, ButtonModule, InputTextModule, CommonModule],
   templateUrl: './primedialog.component.html',
   styleUrl: './primedialog.component.scss'
 })
 export class PrimedialogComponent {
 
   @ViewChild('contenedor', { read: ViewContainerRef, static: true }) contenedor!: ViewContainerRef;
+  private loadedFormComponentRef: ComponentRef<FormcontactoComponent> | null = null;
 
   constructor(private resolver: ComponentFactoryResolver) {}
 
-  listaDeComponentes = new ListaComponentes();
+  listaDeComponentes = new ListaComponentes()
 
   async showDialog(infoModal: any) {
-    // const boton = document.getElementById('miBoton') as HTMLButtonElement
-    const metodoClickeado = infoModal.componentePrecargado
-
-    if(metodoClickeado){
-      let componente = await this.listaDeComponentes.obtenerComponentePorNombre(infoModal.componentePrecargado)
-      const factory = await this.resolver.resolveComponentFactory(componente.componente);
-      this.contenedor.clear()
-      this.contenedor.createComponent(factory);
-    }else{
-      console.log('componente no encontrado')
-    }
-    this.title = infoModal.title
-    this.componentePrecargado = infoModal.componentePrecargado
+    const metodoClickeado = infoModal.componentePrecargado;
+    
+    if (metodoClickeado) {
+      let componenteInfo = await this.listaDeComponentes.obtenerComponentePorNombre(infoModal.componentePrecargado);
+      
+      if (componenteInfo && componenteInfo.componente) {
+        const numerRow: number | null = (infoModal.dataPrecargada !== undefined && infoModal.dataPrecargada !== null) ? infoModal.dataPrecargada : null
+        this.contenedor.clear();
+        const factory = await this.resolver.resolveComponentFactory(componenteInfo.componente);
+        this.loadedFormComponentRef = this.contenedor.createComponent(factory) as ComponentRef<FormcontactoComponent>;
+        if (this.loadedFormComponentRef.instance instanceof FormcontactoComponent) {
+          this.loadedFormComponentRef.instance.idPrecargado = numerRow
+        } else {
+          console.warn(`PrimedialogComponent: El componente cargado "${metodoClickeado}" no es una instancia de FormcontactoComponent. No se pudo pasar idPrecargado.`);
+        }
+      } 
+    } 
+    
+    this.title = infoModal.title;
+    this.buttonSave = infoModal.buttonSave;
+    this.componentePrecargado = infoModal.componentePrecargado;
+    this.dataPrecargada = (infoModal.dataPrecargada !== undefined && infoModal.dataPrecargada !== null) ? infoModal.dataPrecargada : null;
     this.visible = true;
+  }
+
+  async accionGuardar(){
+    let componenteInfo = await this.listaDeComponentes.obtenerComponentePorNombre('FormcontactoComponent');
+    if (componenteInfo && componenteInfo.componente) {
+      const factory = await this.resolver.resolveComponentFactory(componenteInfo.componente);
+      this.loadedFormComponentRef = this.contenedor.createComponent(factory) as ComponentRef<FormcontactoComponent>;
+      if (this.loadedFormComponentRef.instance instanceof FormcontactoComponent) {
+        this.loadedFormComponentRef.instance.crearContacto()
+      } 
+    }
   }
 
   closeDialog() {
     this.visible = false;
+    if (this.contenedor) {
+      this.contenedor.clear();
+    }
+    this.loadedFormComponentRef = null
   }
 
-  visible: boolean = false;
-  title: string = '';
+  buttonSave: boolean = false
+  visible: boolean = false
+  title: string = ''
+  dataPrecargada: number | null = null
   componentePrecargado: string = ''
-
 }

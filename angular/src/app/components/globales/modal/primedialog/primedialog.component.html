@@ -1,5 +1,4 @@
-<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
-  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+<p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
   <ng-template #header>
     <div class="inline-flex items-center justify-center gap-2">
       <span class="font-bold whitespace-nowrap">{{title}}</span>
@@ -10,6 +9,8 @@
 
   <ng-template #footer>
     <p-button label="Cerrar" [text]="true" severity="secondary" (click)="visible = false" />
-    <p-button label="Guardar" [outlined]="true" severity="secondary" (click)="visible = false" />
+    @if(buttonSave){
+      <p-button label="Guardar" [outlined]="true" severity="secondary" (click)="visible = false" (click)="accionGuardar()" />
+    }
   </ng-template>
 </p-dialog>

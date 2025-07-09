@@ -7,7 +7,15 @@ export class UploadService {
  
   constructor() {}
 
-  async leerContacto(){
+  async leerContacto(index: number){
+    if(localStorage.getItem('data')){
+      const data = localStorage.getItem('data')
+      
+      if(data!=null){ 
+        let dataTratar = JSON.parse(data)[index]
+        return dataTratar
+      }
+    }
   }
 
   async cargueJson(newJson: any){

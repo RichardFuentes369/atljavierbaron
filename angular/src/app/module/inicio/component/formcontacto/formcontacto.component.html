@@ -1,22 +1,39 @@
 <div class="">
-  <div class="col-xl-12 col-sm-12 row">
-    <div class="col-xl col-sm-12">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, reprehenderit accusamus vero eveniet commodi minus doloribus animi quisquam explicabo soluta exercitationem aperiam eaque corrupti iure dolores ut at saepe hic.
-      <div class="col-sm-12 row p-0">
-        <div class="col-sm-12">
-          <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearContacto()">
-              Crear
-          </button>
-        </div>
-      </div>
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-user"></i>
+    </p-inputgroup-addon>
+    <input [(ngModel)]="model.name" pInputText placeholder="Nombres" />
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-user"></i>
+    </p-inputgroup-addon>
+    <input [(ngModel)]="model.lastname" pInputText placeholder="Apellidos" />
+  </p-inputgroup>
+
+  <p-inputgroup>
+    <p-inputgroup-addon>
+      <i class="pi pi-user"></i>
+    </p-inputgroup-addon>
+    <input [(ngModel)]="model.email" pInputText placeholder="Correo" />
+  </p-inputgroup>
+
+  <input type="date" class="form-control" [(ngModel)]="model.birthdate">
+
+  <select class="form-control" [(ngModel)]="model.sexo">
+    <option [ngValue]="null" disabled>-- Selecciona una opción --</option>
+    @for (sexo of sexo; track sexo.value) {
+      <option [ngValue]="sexo">{{ sexo.name }}</option>
+    }
+  </select>
+
+  <div class="col-sm-12 row p-0">
+    <div class="col-sm-12">
+      <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearContacto()">
+        Crear
+      </button>
     </div>
   </div>
 </div>

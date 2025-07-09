@@ -74,10 +74,22 @@ export class TableComponent implements OnInit {
     }
   }
 
-  async editarContacto(){
+  async editarContacto(index: number){
     let infoModal = {
       title: "Editar contacto",
-      componentePrecargado: "FormcontactoComponent"
+      componentePrecargado: "FormcontactoComponent",
+      dataPrecargada: index,
+      buttonSave: true
+    }
+    this.abrirModal.emit(infoModal)
+  }
+  
+  async verContacto(index: number){
+    let infoModal = {
+      title: "Ver contacto",
+      componentePrecargado: "FormcontactoComponent",
+      dataPrecargada: index,
+      buttonSave: false
     }
     this.abrirModal.emit(infoModal)
   }
