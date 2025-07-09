@@ -4,11 +4,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 // Paquete para peticiones http
 import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
-import { ApplicationConfig } from '@angular/core';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
-
 // Paquete para traducción
 import {
   TranslateModule,
@@ -28,8 +23,6 @@ import { AppRoutingModule } from './app-routing.module';
 // Plantillas
 
 import { AppComponent } from './app.component';
-
-import { RouterModule } from '@angular/router';
 
 export function createTranslateLoader(http: HttpClient) {
   const baseTranslateUrl = './assets/i18n';
@@ -81,16 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     provideHttpClient(withFetch()),
-    provideClientHydration(),
-    provideAnimationsAsync(),
-    providePrimeNG({
-        theme: {
-          preset: Aura,
-          options: {
-            darkModeSelector: false || 'none'
-          }
-        }
-    })
+    provideClientHydration() // Si lo estás usando
   ],
   bootstrap: [AppComponent]
 })
