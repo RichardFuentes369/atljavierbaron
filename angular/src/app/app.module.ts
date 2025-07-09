@@ -7,6 +7,11 @@ import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@ang
 // Animation
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import this
 
+// Prime
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
 // Paquete para traducción
 import {
   TranslateModule,
@@ -70,7 +75,16 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     provideHttpClient(withFetch()),
-    provideClientHydration() // Si lo estás usando
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    providePrimeNG({
+        theme: {
+          preset: Aura,
+          options: {
+            darkModeSelector: false || 'none'
+          }
+        }
+    })
   ],
   bootstrap: [AppComponent]
 })

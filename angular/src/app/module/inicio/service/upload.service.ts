@@ -14,7 +14,20 @@ export class UploadService {
     let response: { title?: string, message?: string, code?: string } = {};
     response.title = "Archivo"
     try {
-      localStorage.setItem('data', JSON.stringify(newJson));
+      let dataStorage = localStorage.getItem('data')
+      if(dataStorage){
+        let newDada = []
+        for (const dexist of JSON.parse(dataStorage)) {
+          newDada.push(dexist)
+        }
+        for (const dnew of newJson) {
+          newDada.push(dnew)
+        }
+        localStorage.removeItem('data')
+        localStorage.setItem('data', JSON.stringify(newDada))
+      }else{
+        localStorage.setItem('data', JSON.stringify(newJson));
+      }
       response.message = "Se cargó el archivo json de forma correcta"
       response.code = "200"
     } catch (e) {
@@ -44,13 +57,45 @@ export class UploadService {
     return response
   }
 
+  async listarStorage(){
+    let response: { title?: string, message?: string, code?: string , data?: any} = {};
+
+    if(localStorage.getItem('data')){
+      response.data = localStorage.getItem('data')
+      response.code = "200"
+    }else{
+      response.title = "Error en el listado"
+      response.message = "No se encontro data a listar"
+      response.code = "404"
+    }
+    
+    return response
+  }
+
   async crearContacto(){
   }
 
   async editarContacto(){
   }
 
-  async eliminarContacto(){
+  async eliminarContacto(index: number){
+    let response: { title?: string, message?: string, code?: string } = {};
+    try {
+      let dataStorage = localStorage.getItem('data')
+      if(dataStorage){
+        const dataReal = JSON.parse(dataStorage)
+        dataReal.splice(index, 1)
+        localStorage.removeItem('data')
+        localStorage.setItem('data', JSON.stringify(dataReal))
+        response.title = "Limpieza exitosa"
+        response.message = "Se elimino el registro de forma exitosa"
+        response.code = "200"
+      }
+    } catch (e) {
+      response.message = "Error al eliminar el contacto del localStorage"
+      response.code = "404"
+    }
+    return response
   }
   
 }

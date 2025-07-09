@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { swalert } from '@functions/System'
 
@@ -11,7 +11,8 @@ interface Contactos {
   apellido: string,
   correo: string,
   sexo: string,
-  nacimiento: number
+  nacimiento: number,
+  telefono: []
 }
 
 @Component({
@@ -27,15 +28,21 @@ export class TableComponent implements OnInit {
   constructor(
     private uploadService :UploadService,
   ){ }
+
+  @Output() alertaJson = new EventEmitter<void>();
   
   contactos!: Contactos[];
 
-  // constructor(private productService: ProductService) {}
-
   ngOnInit() {
-    // this.productService.getProductsMini().then((data) => {
-    // this.products = data;
-    // });
+    this.cargarTabla()
+  }
+
+  async cargarTabla(){
+    const {data, title, message, code} = await this.uploadService.listarStorage()
+
+    if(code == '200'){
+      this.contactos = JSON.parse(data)
+    }
   }
 
   async limpiarStorage(){
@@ -43,10 +50,27 @@ export class TableComponent implements OnInit {
 
     if(code == '200'){
       swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
+      this.contactos = []
     }
 
     if(code == '404'){
       swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'error')
+    }
+  }
+
+  async refreshTable(){
+    const {data, title, message, code} = await this.uploadService.listarStorage()
+
+    if(code == '200'){
+      this.contactos = JSON.parse(data)
+    }
+  }
+
+  async eliminarContacto(index: number){
+    const {title, message, code} = await this.uploadService.eliminarContacto(index)
+    if(code == '200'){
+      this.refreshTable()
+      swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
     }
   }
 }

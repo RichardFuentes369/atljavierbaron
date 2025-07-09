@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BtnuploadComponent as BtnUpload} from './component/btnupload/btnupload.component';
-import { TableComponent as Table} from './component/table/table.component';
+import { TableComponent as Table, TableComponent} from './component/table/table.component';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,4 +25,9 @@ export class InicioComponent {
     private translate: TranslateService
   ) { }
 
+  @ViewChild(TableComponent) tableComponent!: TableComponent;
+
+  alertaJson(){
+    this.tableComponent.refreshTable()
+  }
 }

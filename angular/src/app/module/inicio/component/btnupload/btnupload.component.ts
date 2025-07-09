@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FileUpload } from 'primeng/fileupload';
 import { swalert } from '@functions/System'
 
@@ -23,6 +23,8 @@ export class BtnuploadComponent {
     private uploadService :UploadService,
   ){ }
 
+  @Output() alertaJson = new EventEmitter<void>();
+
   jsonData: any; 
 
   cargueJson(event: UploadEvent) {
@@ -34,6 +36,7 @@ export class BtnuploadComponent {
           const fileContent = e.target.result;
           this.jsonData = JSON.parse(fileContent); 
           const {message, title} = await this.uploadService.cargueJson(this.jsonData)
+          this.alertaJson.emit();
           swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
         } catch (error) {
           swalert('Error', 'No se pudo parsear el archivo. Asegúrate de que sea un JSON válido', 'error')
