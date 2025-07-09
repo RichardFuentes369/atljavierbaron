@@ -4,9 +4,9 @@
       <app-component-btnupload (alertaJson)="alertaJson()"></app-component-btnupload>
     </div>
     <div class="p-2 bd-highlight">
-      <p-button label="Crear" [raised]="true" severity="warn" [rounded]="true" severity="info" size="small" (click)="abrirModal()"/>
+      <p-button label="Crear" [raised]="true" severity="warn" [rounded]="true" severity="info" size="small" (click)="abrirModal({'title': 'Crear contacto'})"/>
     </div>
   </div>  
   <app-global-primedialog></app-global-primedialog>
-  <app-component-table (abrirModal)="abrirModal()"></app-component-table>
+  <app-component-table (abrirModal)="abrirModal($event)"></app-component-table>
 </div>

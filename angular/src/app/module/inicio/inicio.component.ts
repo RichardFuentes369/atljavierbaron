@@ -32,7 +32,7 @@ export class InicioComponent {
     this.tableComponent.refreshTable()
   }
 
-  abrirModal(){
-    this.primedialogComponent.showDialog()
+  abrirModal(infoModal: any){
+    this.primedialogComponent.showDialog(infoModal)
   }
 }

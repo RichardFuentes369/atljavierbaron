@@ -29,7 +29,7 @@ export class TableComponent implements OnInit {
     private uploadService :UploadService,
   ){ }
 
-  @Output() abrirModal = new EventEmitter<void>();
+  @Output() abrirModal = new EventEmitter<any>();
   
   contactos!: Contactos[];
 
@@ -75,6 +75,9 @@ export class TableComponent implements OnInit {
   }
 
   async editarContacto(){
-    this.abrirModal.emit()
+    let infoModal = {
+      title: "Editar contacto"
+    }
+    this.abrirModal.emit(infoModal)
   }
 }

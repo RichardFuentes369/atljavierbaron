@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,12 +13,15 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class PrimedialogComponent {
   visible: boolean = false;
+  title: string = '';
 
-  showDialog() {
+  showDialog(infoModal: any) {
+    this.title = infoModal.title
     this.visible = true;
   }
 
   closeDialog() {
     this.visible = false;
   }
+
 }
