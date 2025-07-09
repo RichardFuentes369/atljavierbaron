@@ -1,0 +1,14 @@
+<div class="">
+  <div class="card flex justify-center">
+    <p-fileupload 
+      mode="basic" 
+      name="demo[]" 
+      chooseIcon="pi pi-upload" 
+      url="https://www.primefaces.org/cdn/api/upload.php" 
+      accept="application/json" 
+      maxFileSize="1000000" 
+      (onUpload)="cargueJson($event)" 
+      [auto]="true" 
+      chooseLabel="Json" />
+  </div>
+</div>

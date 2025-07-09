@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoostrapComponent } from './boostrap.component';
+import { BtnuploadComponent } from './btnupload.component';
 
-describe('BoostrapComponent', () => {
-  let component: BoostrapComponent;
-  let fixture: ComponentFixture<BoostrapComponent>;
+describe('BtnuploadComponent', () => {
+  let component: BtnuploadComponent;
+  let fixture: ComponentFixture<BtnuploadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BoostrapComponent]
+      declarations: [BtnuploadComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BoostrapComponent);
+    fixture = TestBed.createComponent(BtnuploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
