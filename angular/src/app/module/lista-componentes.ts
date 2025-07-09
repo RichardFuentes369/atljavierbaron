@@ -1,4 +1,4 @@
-// import { CrearUsuariosComponent } from './users/components/crear-usuarios/crear-usuarios.component';
+import { FormcontactoComponent } from './inicio/component/formcontacto/formcontacto.component';
 
 export class ListaComponentes {
 
@@ -6,11 +6,10 @@ export class ListaComponentes {
   * Componentes forzados a cargar en los modals
   */
   componentes: any[] = [
-    // {
-    //   name: 'CrearUsuariosComponent',
-    //   componente: CrearUsuariosComponent
-    // },
-
+    {
+      name: 'FormcontactoComponent',
+      componente: FormcontactoComponent
+    },
   ];
 
   obtenerComponentePorNombre(nombre: string) {

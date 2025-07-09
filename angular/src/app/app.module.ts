@@ -4,6 +4,9 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 // Paquete para peticiones http
 import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
+// Animation
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import this
+
 // Paquete para traducción
 import {
   TranslateModule,
@@ -63,6 +66,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     FormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideHttpClient(withFetch()),
