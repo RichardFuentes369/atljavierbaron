@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
+  standalone: true, 
   imports: [
     CommonModule, // Generalmente se necesita en standalone
     RouterOutlet // <--- ¡Este es el import clave para <router-outlet>!
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router
-  ){
+  ){  
   }
 
   ngOnInit() {
