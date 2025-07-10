@@ -60,7 +60,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost/contacts/3",
+			"name": "http://localhost/contacts/1",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -68,21 +68,21 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/contacts/3",
+					"raw": "http://localhost/contacts/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"contacts",
-						"3"
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://atl.local/contacts/4",
+			"name": "http://atl.local/contacts/1",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -90,7 +90,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://atl.local/contacts/4",
+					"raw": "http://atl.local/contacts/1",
 					"protocol": "http",
 					"host": [
 						"atl",
@@ -98,7 +98,7 @@
 					],
 					"path": [
 						"contacts",
-						"4"
+						"1"
 					]
 				}
 			},
