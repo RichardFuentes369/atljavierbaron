@@ -1,0 +1,45 @@
+[
+  {
+    "nombres": "Juan",
+    "apellidos": "Pérez",
+    "correo": "juan.perez@example.com",
+    "sexo": "Masculino",
+    "nacimiento": "1985-03-15",
+    "telefonos": [
+      "3001234567",
+      "6011234567"
+    ]
+  },
+  {
+    "nombres": "María",
+    "apellidos": "González",
+    "correo": "maria.gonzalez@example.com",
+    "sexo": "Femenino",
+    "nacimiento": "1992-07-22",
+    "telefonos": [
+      "3109876543",
+      "6049876543"
+    ]
+  },
+  {
+    "nombres": "Carlos",
+    "apellidos": "Rodríguez",
+    "correo": "carlos.rodriguez@example.com",
+    "sexo": "Masculino",
+    "nacimiento": "1978-11-01",
+    "telefonos": [
+      "3205551234"
+    ]
+  },
+  {
+    "nombres": "Ana",
+    "apellidos": "López",
+    "correo": "ana.lopez@example.com",
+    "sexo": "Femenino",
+    "nacimiento": "2000-01-30",
+    "telefonos": [
+      "3154445678",
+      "6073332211"
+    ]
+  }
+]
