@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,19 +10,30 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FluidModule } from 'primeng/fluid';
 import { UploadService } from '@module/inicio/service/upload.service';
+import { TableComponent } from '../table/table.component';
+import { swalert } from '@functions/System'
 
 interface Sexo {
   name: string;
   value: string;
 }
 
+interface ContactModel { // Define una interfaz para tu modelo para mejor tipado
+  name: string;
+  lastname: string;
+  email: string;
+  sexo: Sexo | null;
+  birthdate: Date | string | undefined;
+  phone: string[];
+}
+
 @Component({
   selector: 'app-formcontacto',
   standalone: true,
   imports: [
+    CommonModule,
     InputGroupModule,
     InputGroupAddonModule,
-    FormsModule,
     InputTextModule,
     SelectModule,
     InputNumberModule,
@@ -38,26 +50,19 @@ export class FormcontactoComponent implements OnInit {
     private uploadService :UploadService,
   ){ }
 
-  @Input() idPrecargado: number | null = null;
+  @Input() idPrecargado: number | null = null
 
   sexo: Sexo[] = [
     { name: 'Masculino', value: 'Masculino' },
     { name: 'Femenino', value: 'Femenino' },
   ]
 
-  model: {
-    name: string
-    lastname: string
-    email: string
-    sexo: Sexo | null
-    birthdate: Date | string | undefined
-    phone: string[]
-  } = {
+  model: ContactModel = { 
     name: '',
     lastname: '',
     email: '',
-    sexo: null, 
-    birthdate: undefined, 
+    sexo: null,
+    birthdate: undefined,
     phone: [],
   }
 
@@ -74,24 +79,14 @@ export class FormcontactoComponent implements OnInit {
     }
   }
 
-  cargarData(index: number | null) {
-    console.log(index)
-    console.log(this.model)
-
-    if (!this.model.name || !this.model.name || !this.model.email || !this.model.sexo || !this.model.birthdate) {
-      console.warn('Por favor, completa los campos requeridos (Nombre, Correo, Sexo).');
-      return;
-    }
-    
-
+  async guardarData(index: number | null) {
     if(index == null){
-      console.log('creando')
+      const {message, title, code} = await this.uploadService.crearContacto(this.model)
+      swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
     }else{
-      console.log('actualizando')
+      const {message, title, code} = await this.uploadService.editarContacto(this.model, index)
+      swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
     }
   }
 
-  async crearContacto(){
-    console.log('aqui estoy')
-  }
 }

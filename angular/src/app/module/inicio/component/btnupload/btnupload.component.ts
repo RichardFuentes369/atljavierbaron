@@ -36,11 +36,11 @@ export class BtnuploadComponent {
           const fileContent = e.target.result;
           this.jsonData = JSON.parse(fileContent); 
           const {message, title} = await this.uploadService.cargueJson(this.jsonData)
-          this.alertaJson.emit();
+          this.alertaJson.emit()
           swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
         } catch (error) {
           swalert('Error', 'No se pudo parsear el archivo. Asegúrate de que sea un JSON válido', 'error')
-          console.error('Error al parsear JSON:', error);
+          console.error('Error al parsear JSON:', error)
         }
       };
       

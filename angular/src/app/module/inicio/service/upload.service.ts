@@ -80,10 +80,72 @@ export class UploadService {
     return response
   }
 
-  async crearContacto(){
+  async crearContacto(model: any){
+    let response: { title?: string, message?: string, code?: string , data?: any} = {};
+    try {
+      let dataStorage = localStorage.getItem('data')
+      let nuevoObjeto = {
+        'nombres': model.name,
+        'apellidos': model.lastname,
+        'correo': model.email,
+        'nacimiento': model.birthdate,
+        'sexo': model.sexo.value
+      }
+      if(dataStorage){
+        const dataReal = JSON.parse(dataStorage)
+        dataReal.push(nuevoObjeto)
+        localStorage.removeItem('data')
+        localStorage.setItem('data', JSON.stringify(dataReal))
+      }else{
+        let array = []
+        const arrayNuevo = array.push(nuevoObjeto)
+        localStorage.setItem('data', JSON.stringify(arrayNuevo))
+      }
+      response.title = "Contacto"
+      response.message = "Creado exitosamente"
+      response.code = "200"
+    } catch (e) {
+      response.message = "Error al eliminar el contacto del localStorage"
+      response.code = "404"
+    }
+    return response
   }
 
-  async editarContacto(){
+  async editarContacto(model: any, index:number){
+    let response: { title?: string, message?: string, code?: string , data?: any} = {};
+    try {
+      let dataStorage = localStorage.getItem('data')
+      let nuevoObjeto = {
+        'nombres': model.name,
+        'apellidos': model.lastname,
+        'correo': model.email,
+        'nacimiento': model.birthdate,
+        'sexo': model.sexo.value
+      }
+      if(dataStorage){
+        const updatedObject = { ...JSON.parse(dataStorage)[index], ...nuevoObjeto }
+
+        const updatedArray = [
+          ...JSON.parse(dataStorage).slice(0, index), 
+          updatedObject,                      
+          ...JSON.parse(dataStorage).slice(index + 1)
+        ];
+
+        localStorage.removeItem('data')
+        localStorage.setItem('data', JSON.stringify(updatedArray))
+      }else{
+        let array = []
+        const arrayNuevo = array.push(nuevoObjeto)
+        localStorage.setItem('data', JSON.stringify(arrayNuevo))
+      }
+      response.title = "Contacto"
+      response.message = "Actualizado exitosamente"
+      response.code = "200"
+    } catch (e) {
+      response.message = "Error al actualizar el contacto del localStorage"
+      response.code = "404"
+    }
+    return response
   }
 
   async eliminarContacto(index: number){

@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, EventEmitter, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,6 +17,7 @@ export class PrimedialogComponent {
 
   @ViewChild('contenedor', { read: ViewContainerRef, static: true }) contenedor!: ViewContainerRef;
   private loadedFormComponentRef: ComponentRef<FormcontactoComponent> | null = null;
+  @Output() alertaJson = new EventEmitter<void>();
 
   constructor(private resolver: ComponentFactoryResolver) {}
 
@@ -49,14 +50,11 @@ export class PrimedialogComponent {
   }
 
   async accionGuardar(index: number | null){
-    let componenteInfo = await this.listaDeComponentes.obtenerComponentePorNombre('FormcontactoComponent');
-    if (componenteInfo && componenteInfo.componente) {
-      const factory = await this.resolver.resolveComponentFactory(componenteInfo.componente);
-      this.loadedFormComponentRef = this.contenedor.createComponent(factory) as ComponentRef<FormcontactoComponent>;
-      if (this.loadedFormComponentRef.instance instanceof FormcontactoComponent) {
-        this.loadedFormComponentRef.instance.cargarData(index)
-      } 
-    }
+    if (this.loadedFormComponentRef && this.loadedFormComponentRef.instance instanceof FormcontactoComponent) {
+      const indexParaGuardar = this.loadedFormComponentRef.instance.idPrecargado
+      this.loadedFormComponentRef.instance.guardarData(indexParaGuardar)
+      this.alertaJson.emit()
+    } 
   }
 
   closeDialog() {
