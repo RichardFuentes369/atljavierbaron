@@ -8,7 +8,8 @@ git clone -b master https://github.com/RichardFuentes369/atljavierbaron
 ```
 
 ### Nota importante 1
-Dentro de atljavierbaron, abra una carpeta json la cual contendra un archivo llamado "prueba" que se uso para precargar la data inicial del front. Se creo un boton para crear a deseo nuevos elementos. 
+Dentro de atljavierbaron, abra una carpeta json la cual contendra un archivo llamado "prueba.json" que se uso para precargar la data inicial del front. <br>
+Se creo un boton para crear a deseo nuevos elementos. 
 
 ## Proyecto angular
 
@@ -31,6 +32,23 @@ ng serve
 
 ### Nota importante 2
 Dentro de atljavierbaron>php>postman, abra una archivo json el cual se podra importar a postamn para el consumo de las apis. (GET|POST|DELETE) http://atl.local/contacts/ => Se creo un entorno virtual en apache el cual se llamo atl.local
+
+```
+METHODO GET => http://atl.local/contacts/1 (LISTA INDIVIDUALMENTE, EL NÚMERO ES EL ID)
+METHODO GET => http://atl.local/contacts (LISTA TODOS LOS CONTACTOS)
+METHODO POST => http://atl.local/contacts (CREA UN CONTACTOS)
+    => datos a enviar
+    {
+        "name": "Jorge",
+        "lastname": "Perez",
+        "email": "jorge.perez@example.com",
+        "phones": [
+            "1234567890",
+            "0987654321"
+        ]
+    }
+METHODO DELETE => http://atl.local/contacts/1 (ELIMINA UN CONTACTOS, EL NÚMERO ES EL ID)
+```
 
 ## Proyecto php
 
