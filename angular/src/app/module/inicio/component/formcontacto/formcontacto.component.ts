@@ -10,8 +10,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FluidModule } from 'primeng/fluid';
 import { UploadService } from '@module/inicio/service/upload.service';
-import { TableComponent } from '../table/table.component';
 import { swalert } from '@functions/System'
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 interface Sexo {
   name: string;
@@ -39,7 +40,9 @@ interface ContactModel { // Define una interfaz para tu modelo para mejor tipado
     InputNumberModule,
     DatePickerModule, 
     FormsModule,
-    FluidModule
+    FluidModule,
+    TableModule,
+    ButtonModule
   ],
   templateUrl: './formcontacto.component.html',
   styleUrl: './formcontacto.component.scss'
@@ -51,6 +54,7 @@ export class FormcontactoComponent implements OnInit {
   ){ }
 
   @Input() idPrecargado: number | null = null
+  @Input() buttonSave: boolean = true
 
   sexo: Sexo[] = [
     { name: 'Masculino', value: 'Masculino' },

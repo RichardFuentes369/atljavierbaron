@@ -28,4 +28,22 @@
       <option [ngValue]="sexo">{{ sexo.name }}</option>
     }
   </select>
+
+  <p-table [value]="model.phone" stripedRows [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+      <tr>
+        <th class="text-center">
+          Telefonos
+          @if(buttonSave){
+            <p-button icon="pi pi-plus" [rounded]="true" severity="info" />
+          }
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-phoneNumber>
+      <tr>
+        <td class="text-center">{{ phoneNumber }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

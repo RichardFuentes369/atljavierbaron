@@ -36,6 +36,7 @@ export class PrimedialogComponent {
         this.loadedFormComponentRef = this.contenedor.createComponent(factory) as ComponentRef<FormcontactoComponent>;
         if (this.loadedFormComponentRef.instance instanceof FormcontactoComponent) {
           this.loadedFormComponentRef.instance.idPrecargado = numerRow
+          this.loadedFormComponentRef.instance.buttonSave = infoModal.buttonSave
         } else {
           console.warn(`PrimedialogComponent: El componente cargado "${metodoClickeado}" no es una instancia de FormcontactoComponent. No se pudo pasar idPrecargado.`);
         }
