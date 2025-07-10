@@ -49,8 +49,8 @@ export class FormcontactoComponent implements OnInit {
     name: string
     lastname: string
     email: string
-    sexo: Sexo | null;
-    birthdate: Date | string | undefined;
+    sexo: Sexo | null
+    birthdate: Date | string | undefined
     phone: string[]
   } = {
     name: '',
@@ -59,7 +59,7 @@ export class FormcontactoComponent implements OnInit {
     sexo: null, 
     birthdate: undefined, 
     phone: [],
-  };
+  }
 
   async ngOnInit() {
     if(this.idPrecargado != null){
@@ -74,8 +74,24 @@ export class FormcontactoComponent implements OnInit {
     }
   }
 
-  crearContacto() {
-    console.log('creando '+this.idPrecargado)
-    console.log('creando contacto')
+  cargarData(index: number | null) {
+    console.log(index)
+    console.log(this.model)
+
+    if (!this.model.name || !this.model.name || !this.model.email || !this.model.sexo || !this.model.birthdate) {
+      console.warn('Por favor, completa los campos requeridos (Nombre, Correo, Sexo).');
+      return;
+    }
+    
+
+    if(index == null){
+      console.log('creando')
+    }else{
+      console.log('actualizando')
+    }
+  }
+
+  async crearContacto(){
+    console.log('aqui estoy')
   }
 }

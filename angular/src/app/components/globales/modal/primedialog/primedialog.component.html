@@ -10,7 +10,7 @@
   <ng-template #footer>
     <p-button label="Cerrar" [text]="true" severity="secondary" (click)="visible = false" />
     @if(buttonSave){
-      <p-button label="Guardar" [outlined]="true" severity="secondary" (click)="visible = false" (click)="accionGuardar()" />
+      <p-button label="Guardar" [outlined]="true" severity="secondary" (click)="visible = false" (click)="accionGuardar(dataPrecargada)" />
     }
   </ng-template>
 </p-dialog>

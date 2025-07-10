@@ -48,13 +48,13 @@ export class PrimedialogComponent {
     this.visible = true;
   }
 
-  async accionGuardar(){
+  async accionGuardar(index: number | null){
     let componenteInfo = await this.listaDeComponentes.obtenerComponentePorNombre('FormcontactoComponent');
     if (componenteInfo && componenteInfo.componente) {
       const factory = await this.resolver.resolveComponentFactory(componenteInfo.componente);
       this.loadedFormComponentRef = this.contenedor.createComponent(factory) as ComponentRef<FormcontactoComponent>;
       if (this.loadedFormComponentRef.instance instanceof FormcontactoComponent) {
-        this.loadedFormComponentRef.instance.crearContacto()
+        this.loadedFormComponentRef.instance.cargarData(index)
       } 
     }
   }
