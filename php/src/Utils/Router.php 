@@ -1,0 +1,36 @@
+<?php
+class Router {
+    private $routes = [];
+
+    public function addRoute($method, $path, $handler) {
+        $this->routes[$method][$path] = $handler;
+    }
+
+    public function dispatch($method, $uri) {
+        $uriSegments = explode('/', trim($uri, '/'));
+        $basePathSegments = explode('/', trim(str_replace('index.php', '', $_SERVER['SCRIPT_NAME']), '/'));
+        
+        // Remove base path segments from URI segments
+        $cleanUriSegments = array_slice($uriSegments, count($basePathSegments));
+        $cleanUri = implode('/', $cleanUriSegments);
+
+        // Handle direct ID access for DELETE
+        if ($method === 'DELETE' && preg_match('/^atlphp\/(\d+)$/', $cleanUri, $matches)) {
+            $id = $matches[1];
+            if (isset($this->routes[$method]['atlphp/{id}'])) {
+                $handler = $this->routes[$method]['atlphp/{id}'];
+                call_user_func_array($handler, [$id]);
+                return;
+            }
+        }
+
+        if (isset($this->routes[$method][$cleanUri])) {
+            $handler = $this->routes[$method][$cleanUri];
+            call_user_func($handler);
+        } else {
+            http_response_code(404); // Not Found
+            echo json_encode(["message" => "Endpoint not found."]);
+        }
+    }
+}
+?>

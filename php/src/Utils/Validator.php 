@@ -1,0 +1,36 @@
+<?php
+class Validator {
+    public static function validateContactData($data) {
+        $errors = [];
+
+        if (empty($data['first_name'])) {
+            $errors[] = "First name is required.";
+        }
+        if (empty($data['last_name'])) {
+            $errors[] = "Last name is required.";
+        }
+        if (empty($data['email'])) {
+            $errors[] = "Email is required.";
+        } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Invalid email format.";
+        }
+
+        return $errors;
+    }
+
+    public static function validatePhoneNumbers($phoneNumbers) {
+        $errors = [];
+        if (!is_array($phoneNumbers)) {
+            $errors[] = "Phone numbers must be an array.";
+            return $errors;
+        }
+        foreach ($phoneNumbers as $phone) {
+            if (empty($phone)) {
+                $errors[] = "Phone number cannot be empty.";
+            }
+            // Add more specific phone number validation if needed (e.g., regex)
+        }
+        return $errors;
+    }
+}
+?>
