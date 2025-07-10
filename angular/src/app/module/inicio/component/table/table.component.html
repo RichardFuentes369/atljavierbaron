@@ -7,6 +7,7 @@
         <th class="text-center">Correo</th>
         <th class="text-center">Sexo</th>
         <th class="text-center">Nacimiento</th>
+        <th class="text-center">#Telefono(s) guardados</th>
         <th class="text-center">Opciones</th> 
       </tr>
     </ng-template>
@@ -17,15 +18,16 @@
         <td class="text-center">{{ contactos.correo }}</td>
         <td class="text-center">{{ contactos.sexo }}</td>
         <td class="text-center">{{ contactos.nacimiento }}</td>
-        <td>
-          <div class="col-sm-12 row">
-            <div class="col">
+        <td class="text-center">( {{ contactos.telefonos.length }} )</td>
+        <td class="text-center">
+          <div class="p-d-flex p-jc-around p-ai-center">
+            <div class="col p-1">
               <p-button label="Ver" [raised]="true" severity="warn" [rounded]="true" severity="help" size="small" (click)="verContacto(rowIndex)" />
             </div>
-            <div class="col">
+            <div class="col p-1">
               <p-button label="Actualizar" [raised]="true" severity="warn" [rounded]="true" severity="warn" size="small" (click)="editarContacto(rowIndex)" />
             </div>
-            <div class="col">
+            <div class="col p-1">
               <p-button label="Eliminar" [raised]="true" severity="danger" [rounded]="true" severity="danger" size="small" (click)="eliminarContacto(rowIndex)" />
             </div>
           </div>
