@@ -29,20 +29,28 @@
     }
   </select>
 
+  <div class="text-center mt-4">
+    @if(buttonSave){
+      <p-button icon="pi pi-plus" [rounded]="true" severity="info" (click)="agregarPhone()" label="Agregar" />
+    }
+  </div>
   <p-table [value]="model.phone" stripedRows [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template #header>
       <tr>
         <th class="text-center">
           Telefonos
-          @if(buttonSave){
-            <p-button icon="pi pi-plus" [rounded]="true" severity="info" (click)="agregarPhone()" />
-          }
+        </th>
+        <th class="text-center">
+          Eliminar
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-phoneNumber>
+    <ng-template pTemplate="body" let-phoneNumber let-rowIndex="rowIndex">
       <tr>
         <td class="text-center">{{ phoneNumber }}</td>
+        <td class="text-center">
+          <p-button icon="pi pi-trash" [rounded]="true" severity="danger" (click)="removerPhone(rowIndex)" />
+        </td>
       </tr>
     </ng-template>
   </p-table>

@@ -89,7 +89,8 @@ export class UploadService {
         'apellidos': model.lastname,
         'correo': model.email,
         'nacimiento': model.birthdate,
-        'sexo': model.sexo.value
+        'sexo': model.sexo.value,
+        'telefonos': model.phone
       }
       if(dataStorage){
         const dataReal = JSON.parse(dataStorage)
@@ -120,7 +121,8 @@ export class UploadService {
         'apellidos': model.lastname,
         'correo': model.email,
         'nacimiento': model.birthdate,
-        'sexo': model.sexo.value
+        'sexo': model.sexo.value,
+        'telefonos': model.phone
       }
       if(dataStorage){
         const updatedObject = { ...JSON.parse(dataStorage)[index], ...nuevoObjeto }

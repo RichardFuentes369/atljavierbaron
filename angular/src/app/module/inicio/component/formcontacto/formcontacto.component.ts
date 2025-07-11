@@ -95,8 +95,13 @@ export class FormcontactoComponent implements OnInit {
 
   async agregarPhone(){
     const result = await swalertInput('Ingresa un telefono nuevo','','Guardar')
-    console.log(result.value)
-    console.log(this.idPrecargado)
+    if(result.value){
+      this.model.phone.push(result.value)
+    }
+  }
+
+  async removerPhone(index: number){
+    this.model.phone.splice(index, 1)
   }
 
 }
