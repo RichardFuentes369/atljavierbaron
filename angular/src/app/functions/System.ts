@@ -11,7 +11,7 @@ export function ocultarModalOscura(): void {
   }
 
   const closeButton = document.querySelector('.closeModalButton') as HTMLElement | null;
-  if(closeButton){
+  if (closeButton) {
     closeButton.click()
   }
 }
@@ -20,13 +20,13 @@ export function ocultarModalOscura(): void {
 * Metodo para filtrar a los permisos
 * Modulo y Submodulo
 */
-export function Permisos(permisos: any, nombreModulo: string, nombreSubmodulo: string): Array<any>{
-  if(nombreSubmodulo == ''){
+export function Permisos(permisos: any, nombreModulo: string, nombreSubmodulo: string): Array<any> {
+  if (nombreSubmodulo == '') {
     return permisos.data.find((e: any) => e.permiso_nombre_permiso == nombreModulo).permisosSubmodulos
-  }else{
+  } else {
     return permisos.data.find(
       (e: any) => e.permiso_nombre_permiso == nombreModulo
-      ).permisosSubmodulos.find((l: any) => l.nombre_permiso == nombreSubmodulo).permisosAcciones
+    ).permisosSubmodulos.find((l: any) => l.nombre_permiso == nombreSubmodulo).permisosAcciones
   }
 }
 
@@ -41,12 +41,29 @@ export function swalert(
   title: string,
   text: string,
   type: any
-){
+) {
   Swal.fire({
     icon: type,
     title: title,
     text: text,
     confirmButtonText: 'Cool'
   })
+}
+
+export function swalertInput(
+  title: string,
+  text: string, 
+  confirmButtonText: string 
+): Promise<any> { 
+  return Swal.fire({ 
+    title: title,
+    input: "text",
+    inputAttributes: {
+      autocapitalize: "off"
+    },
+    showCancelButton: true,
+    confirmButtonText: confirmButtonText, 
+    showLoaderOnConfirm: true,
+  });
 }
 

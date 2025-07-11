@@ -10,7 +10,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FluidModule } from 'primeng/fluid';
 import { UploadService } from '@module/inicio/service/upload.service';
-import { swalert } from '@functions/System'
+import { swalert, swalertInput } from '@functions/System'
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
@@ -91,6 +91,12 @@ export class FormcontactoComponent implements OnInit {
       const {message, title, code} = await this.uploadService.editarContacto(this.model, index)
       swalert((!title)? 'Sin titulo': title, (!message)? 'Sin mensaje': message , 'success')
     }
+  }
+
+  async agregarPhone(){
+    const result = await swalertInput('Ingresa un telefono nuevo','','Guardar')
+    console.log(result.value)
+    console.log(this.idPrecargado)
   }
 
 }
