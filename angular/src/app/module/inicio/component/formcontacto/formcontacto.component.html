@@ -15,7 +15,7 @@
 
   <p-inputgroup>
     <p-inputgroup-addon>
-      <i class="pi pi-user"></i>
+      <i class="pi pi-at"></i>
     </p-inputgroup-addon>
     <input [(ngModel)]="model.email" pInputText placeholder="Correo" />
   </p-inputgroup>
@@ -40,17 +40,21 @@
         <th class="text-center">
           Telefonos
         </th>
+        @if(buttonSave){
         <th class="text-center">
           Eliminar
         </th>
+        }
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-phoneNumber let-rowIndex="rowIndex">
       <tr>
         <td class="text-center">{{ phoneNumber }}</td>
+        @if(buttonSave){
         <td class="text-center">
           <p-button icon="pi pi-trash" [rounded]="true" severity="danger" (click)="removerPhone(rowIndex)" />
         </td>
+        }
       </tr>
     </ng-template>
   </p-table>

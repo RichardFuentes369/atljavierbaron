@@ -159,8 +159,8 @@ export class UploadService {
         dataReal.splice(index, 1)
         localStorage.removeItem('data')
         localStorage.setItem('data', JSON.stringify(dataReal))
-        response.title = "Limpieza exitosa"
-        response.message = "Se elimino el registro de forma exitosa"
+        response.title = "Contacto"
+        response.message = "Eliminado exitosamente"
         response.code = "200"
       }
     } catch (e) {
