@@ -99,8 +99,8 @@ export class UploadService {
         localStorage.setItem('data', JSON.stringify(dataReal))
       }else{
         let array = []
-        const arrayNuevo = array.push(nuevoObjeto)
-        localStorage.setItem('data', JSON.stringify(arrayNuevo))
+        array.push(nuevoObjeto)
+        localStorage.setItem('data', JSON.stringify(array))
       }
       response.title = "Contacto"
       response.message = "Creado exitosamente"
